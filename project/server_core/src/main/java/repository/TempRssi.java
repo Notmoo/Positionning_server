@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table (name = "TEMP_RSSI")
 public class TempRssi {
     @Id @GeneratedValue
-    private Integer id;
+    private int id;
     
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", nullable = false)

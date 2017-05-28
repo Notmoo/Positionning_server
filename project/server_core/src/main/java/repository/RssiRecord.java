@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Table (name = "RSSI_RECORD")
 public class RssiRecord implements Serializable {
     @Id @GeneratedValue
-    private Integer id;
+    private int id;
     
     
     @OneToOne(fetch = FetchType.LAZY)
@@ -28,7 +28,6 @@ public class RssiRecord implements Serializable {
     }
     
     public RssiRecord(Location loc, AccessPoint ap, Double avg, Double stdDev){
-        id = null;
         this.loc = loc;
         this.ap = ap;
         this.avg = avg;

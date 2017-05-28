@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name ="ACCESS_POINT")
 public class AccessPoint implements Serializable{
     @Id @GeneratedValue
-    private Integer id;
+    private int id;
     
     private String mac_addr;
     

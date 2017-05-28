@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Table(name = "LOCATION")
 public class Location implements Serializable {
     @Id @GeneratedValue
-    private Integer id;
+    private int id;
     private Double x, y;
     
     @OneToOne(fetch = FetchType.LAZY)

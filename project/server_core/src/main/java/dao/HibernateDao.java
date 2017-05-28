@@ -127,11 +127,11 @@ public class HibernateDao {
        return internal_getData(AccessPoint.class);
     }
     
-    public boolean saveMap(final Mape mape){return internal_saveData(mape);}
-    public Mape getMap(int mapId){
+    public boolean saveMap(final Map map){return internal_saveData(map);}
+    public Map getMap(int mapId){
         TransactionCallBack callBack = execTransactionProcess((session)->{
             TransactionCallBack reply = new TransactionCallBack<RssiRecord>();
-            Query query = session.createQuery("from Mape m where m.id = :id");
+            Query query = session.createQuery("from Map m where m.id = :id");
             query.setParameter("id", mapId);
             List<Object> results = query.list();
             for(Object result : results){
@@ -140,7 +140,7 @@ public class HibernateDao {
             }
             return reply;
         });
-        return (callBack.getResults().isEmpty()?null:(Mape)callBack.getResults().get(0));
+        return (callBack.getResults().isEmpty()?null:(Map)callBack.getResults().get(0));
     }
     
     private interface ITransactionProcess{

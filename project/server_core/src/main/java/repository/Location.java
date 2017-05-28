@@ -15,7 +15,7 @@ public class Location implements Serializable {
     
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", nullable = false)
-    private Mape mape;
+    private Map map;
     
     public Location () {
     }
@@ -40,11 +40,11 @@ public class Location implements Serializable {
         this.y = y;
     }
     
-    public Mape getMape () {
-        return mape;
+    public Map getMap() {
+        return map;
     }
     
-    public void setMape (final Mape mape) {
-        this.mape = mape;
+    public void setMap(final Map map) {
+        this.map = map;
     }
 }

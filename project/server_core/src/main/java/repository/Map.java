@@ -7,16 +7,15 @@ import java.io.Serializable;
  * Created by Guillaume on 09/05/2017.
  */
 @Entity
-@Table(name = "MAPE")
-public class Mape implements Serializable{
+@Table(name = "MAP")
+public class Map implements Serializable{
     @Id @GeneratedValue
-    private Integer id;
+    private int id;
     private Integer px_width, px_height;
     private Byte[] content;
-    private String desc;
     private Double m_width, m_height;
      
-    public Mape () {
+    public Map() {
     }
     
     public Integer getId () {
@@ -49,14 +48,6 @@ public class Mape implements Serializable{
     
     public void setContent (final Byte[] content) {
         this.content = content;
-    }
-    
-    public String getDesc () {
-        return desc;
-    }
-    
-    public void setDesc (final String desc) {
-        this.desc = desc;
     }
     
     public Double getM_width () {

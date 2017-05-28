@@ -1,3 +1,5 @@
+import service.CalibrationService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,22 @@ public class CalibrationServlet extends HttpServlet{
     @Override
     public void service (final HttpServletRequest servletRequest, final HttpServletResponse servletResponse)
             throws ServletException, IOException {
-        //TODO
+
+        try {
+            int locId = Integer.parseInt(servletRequest.getParameter("LOCATION_ID"));
+            String apMacAddr = servletRequest.getParameter("AP_MAC_ADDRESS");
+            double avg = Double.parseDouble(servletRequest.getParameter("AVG"));
+            double stdDev = Double.parseDouble(servletRequest.getParameter("STD_DEV"));
+
+            new CalibrationService().addCalibrationData(locId, apMacAddr, avg, stdDev);
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                servletResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }catch(IllegalStateException ex){
+                ex.printStackTrace();
+            }
+        }
     }
     
     @Override

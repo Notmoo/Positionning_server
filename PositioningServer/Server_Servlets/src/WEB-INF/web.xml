@@ -1,0 +1,19 @@
+<servlet>
+    <servlet-name>calibrationServlet</servlet-name>
+    <servlet-class>servlets.com.utbm.lo53.CalibrationServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>calibrationServlet</servlet-name>
+    <url-pattern>/calibration</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>positioningServlet</servlet-name>
+    <servlet-class>servlets.PositioningServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>positioningServlet</servlet-name>
+    <url-pattern>/positioning</url-pattern>
+</servlet-mapping>

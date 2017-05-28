@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PositioningServer.iml" filepath="$PROJECT_DIR$/PositioningServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server_Servlets/Server_Servlets.iml" filepath="$PROJECT_DIR$/Server_Servlets/Server_Servlets.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="servlets">
+    <output-path>$PROJECT_DIR$/out/artifacts/servlets</output-path>
+    <root id="root">
+      <element id="archive" name="servlets.war">
+        <element id="directory" name="WEB-INF">
+          <element id="dir-copy" path="$PROJECT_DIR$/server_servlet/src/main/webapp/WEB-INF" />
+          <element id="directory" name="classes">
+            <element id="module-output" name="server_servlet" />
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

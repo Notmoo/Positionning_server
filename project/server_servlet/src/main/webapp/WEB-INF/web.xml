@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app>
+
+    <display-name>LO53 - Positioning server</display-name>
+    <description>LO53 project for 2017 spring semester.</description>
+
+    <!-- Calibration servlet -->
+    <servlet>
+        <servlet-name>calibrationServlet</servlet-name>
+        <servlet-class>classes.CalibrationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>calibrationServlet</servlet-name>
+        <url-pattern>/calibration</url-pattern>
+    </servlet-mapping>
+
+    <!-- Calibration servlet -->
+    <servlet>
+        <servlet-name>positioningServlet</servlet-name>
+        <servlet-class>classes.PositioningServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>positioningServlet</servlet-name>
+        <url-pattern>/positioning</url-pattern>
+    </servlet-mapping>
+
+</web-app>

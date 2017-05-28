@@ -130,21 +130,54 @@ public class HibernateDao {
     public boolean saveMap(final Map map){return internal_saveData(map);}
     public Map getMap(int mapId){
         TransactionCallBack callBack = execTransactionProcess((session)->{
-            TransactionCallBack reply = new TransactionCallBack<RssiRecord>();
+            TransactionCallBack reply = new TransactionCallBack<Map>();
             Query query = session.createQuery("from Map m where m.id = :id");
             query.setParameter("id", mapId);
             List<Object> results = query.list();
             for(Object result : results){
-                if(result instanceof RssiRecord)
+                if(result instanceof Map)
                     reply.getResults().add(result);
             }
             return reply;
         });
         return (callBack.getResults().isEmpty()?null:(Map)callBack.getResults().get(0));
     }
-    
+
+    public List<AccessPoint> getAccessPoints(String apMacAddress) {
+        TransactionCallBack callBack = execTransactionProcess((session)->{
+            TransactionCallBack reply = new TransactionCallBack<AccessPoint>();
+            Query query = session.createQuery("from AccessPoint ap where ap.mac_addr = :addr");
+            query.setParameter("addr", apMacAddress);
+            List<Object> results = query.list();
+            for(Object result : results){
+                if(result instanceof AccessPoint)
+                    reply.getResults().add(result);
+            }
+            return reply;
+        });
+
+        List<AccessPoint> reply = new ArrayList<>();
+        callBack.getResults().forEach(result->reply.add((AccessPoint)result));
+        return reply;
+    }
+
+    public Location getLocation(int Location) {
+        TransactionCallBack callBack = execTransactionProcess((session)->{
+            TransactionCallBack reply = new TransactionCallBack<Location>();
+            Query query = session.createQuery("from Location loc where loc.id = :id");
+            query.setParameter("id", Location);
+            List<Object> results = query.list();
+            for(Object result : results){
+                if(result instanceof Location)
+                    reply.getResults().add(result);
+            }
+            return reply;
+        });
+        return (callBack.getResults().isEmpty()?null:(Location)callBack.getResults().get(0));
+    }
+
     private interface ITransactionProcess{
-        public TransactionCallBack exec(Session tr);
+        TransactionCallBack exec(Session tr);
     }
     
     private class TransactionCallBack<T>{

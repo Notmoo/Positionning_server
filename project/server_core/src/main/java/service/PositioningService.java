@@ -1,5 +1,6 @@
 package service;
 
+import dao.DebianDao;
 import dao.HibernateDao;
 import repository.Location;
 import repository.RssiRecord;
@@ -15,33 +16,37 @@ public class PositioningService {
     
     private static final double DEFAULT_POSITIONING_PRECISION = 7.5;
     
-    private HibernateDao dao;
+    private HibernateDao hibDao;
+    private DebianDao debDao;
     
     public PositioningService () {
-        this.dao = new HibernateDao();
-    }
-    public PositioningService (HibernateDao dao) {
-        this.dao = dao;
+        this.debDao = new DebianDao();
+        this.hibDao = new HibernateDao();
     }
     
-    public Location getLocation (String clientMacAddr) {
-        Location bestLoc = null;
-        double bestLocProbability = -1;
-        for(Location loc : dao.getLocations()) {
-            //Liste des RSSISample pour une position donnée, chaque RSSISample étant
-            //assossié à un AccessPoint
-            List<RssiRecord> rssis = dao.getRssiRecord(loc.getId());
-            
-            //Liste des RSSISample associé à un ap, mesuré pour un client
-            List<TempRssi> clientRssi = dao.getTempRssi(clientMacAddr);
-            
-            double currentLocProbability = probability(clientRssi, rssis, DEFAULT_POSITIONING_PRECISION);
-            if(bestLocProbability == -1 || currentLocProbability > bestLocProbability){
-                bestLoc = loc;
-                bestLocProbability = currentLocProbability;
+    public Location getLocation (String ipAddr) {
+    
+        //Liste des RSSISample associé à un ap, mesuré pour un client
+        List<TempRssi> clientRssi = hibDao.getTempRssi(debDao.getMacAddr(ipAddr));
+        
+        if(clientRssi.size()>=3) {
+            Location bestLoc = null;
+            double bestLocProbability = -1;
+            for (Location loc : hibDao.getLocations()) {
+                //Liste des RSSISample pour une position donnée, chaque RSSISample étant
+                //assossié à un AccessPoint
+                List<RssiRecord> rssis = hibDao.getRssiRecord(loc.getId());
+        
+        
+                double currentLocProbability = probability(clientRssi, rssis, DEFAULT_POSITIONING_PRECISION);
+                if (bestLocProbability == -1 || currentLocProbability > bestLocProbability) {
+                    bestLoc = loc;
+                    bestLocProbability = currentLocProbability;
+                }
             }
+            return bestLoc;
         }
-        return bestLoc;
+        return null;
     }
     
     private double probability(List<TempRssi> temps, List<RssiRecord> rssis, double precision){
@@ -91,5 +96,7 @@ public class PositioningService {
         }
     }
     
-    
+    public String getMacAddr (final String clientIpAddr) {
+        return debDao.getMacAddr(clientIpAddr);
+    }
 }

@@ -11,9 +11,9 @@ import java.io.Serializable;
 public class Map implements Serializable{
     @Id @GeneratedValue
     private int id;
-    private Integer px_width, px_height;
+    private Double x_topLeft, y_topLeft;
     private Byte[] content;
-    private Double m_width, m_height;
+    private Double x_bottomRight, y_bottomRight;
      
     public Map() {
     }
@@ -26,20 +26,20 @@ public class Map implements Serializable{
         this.id = id;
     }
     
-    public Integer getPx_width () {
-        return px_width;
+    public Double getX_topLeft () {
+        return x_topLeft;
     }
     
-    public void setPx_width (final Integer px_width) {
-        this.px_width = px_width;
+    public void setX_topLeft (final Double x_topLeft) {
+        this.x_topLeft = x_topLeft;
     }
     
-    public Integer getPx_height () {
-        return px_height;
+    public Double getY_topLeft () {
+        return y_topLeft;
     }
     
-    public void setPx_height (final Integer px_height) {
-        this.px_height = px_height;
+    public void setY_topLeft (final Double y_topLeft) {
+        this.y_topLeft = y_topLeft;
     }
     
     public Byte[] getContent () {
@@ -50,19 +50,19 @@ public class Map implements Serializable{
         this.content = content;
     }
     
-    public Double getM_width () {
-        return m_width;
+    public Double getX_bottomRight () {
+        return x_bottomRight;
     }
     
-    public void setM_width (final Double m_width) {
-        this.m_width = m_width;
+    public void setX_bottomRight (final Double x_bottomRight) {
+        this.x_bottomRight = x_bottomRight;
     }
     
-    public Double getM_height () {
-        return m_height;
+    public Double getY_bottomRight () {
+        return y_bottomRight;
     }
     
-    public void setM_height (final Double m_height) {
-        this.m_height = m_height;
+    public void setY_bottomRight (final Double y_bottomRight) {
+        this.y_bottomRight = y_bottomRight;
     }
 }

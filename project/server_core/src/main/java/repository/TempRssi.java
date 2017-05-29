@@ -20,6 +20,14 @@ public class TempRssi {
     
     public TempRssi () {}
     
+    public TempRssi (final AccessPoint accessPoint, final String clientMacAddr, final double avg,
+                     final double stdDev) {
+        ap = accessPoint;
+        client_mac_addr = clientMacAddr;
+        this.avg = avg;
+        this.stdDev = stdDev;
+    }
+    
     public AccessPoint getAp () {
         return ap;
     }

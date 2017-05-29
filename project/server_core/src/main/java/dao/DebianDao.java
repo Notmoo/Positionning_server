@@ -1,9 +1,12 @@
-package com.utbm.lo53.dao;
+package dao;
 
 /**
  * Created by Guillaume on 09/05/2017.
  */
 public class DebianDao {
     
-    public String getMacAddr(String ipAddr){return null;}
+    public String getMacAddr(String ipAddr){
+        //TODO
+        return null;
+    }
 }

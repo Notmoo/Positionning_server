@@ -16,7 +16,7 @@
         <url-pattern>/calibration</url-pattern>
     </servlet-mapping>
 
-    <!-- Calibration servlet -->
+    <!-- Positioning request servlet -->
     <servlet>
         <servlet-name>positioningServlet</servlet-name>
         <servlet-class>classes.PositioningServlet</servlet-class>
@@ -24,7 +24,39 @@
 
     <servlet-mapping>
         <servlet-name>positioningServlet</servlet-name>
-        <url-pattern>/positioning</url-pattern>
+        <url-pattern>/positioning/request</url-pattern>
     </servlet-mapping>
 
+    <!-- AP measurement servlet -->
+    <servlet>
+        <servlet-name>apMeasurementServlet</servlet-name>
+        <servlet-class>classes.APMeasurementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>apMeasurementServlet</servlet-name>
+        <url-pattern>/ap/measurement</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Scale Servlet -->
+    <servlet>
+        <servlet-name>mapScaleServlet</servlet-name>
+        <servlet-class>classes.MapScaleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mapScaleServlet</servlet-name>
+        <url-pattern>/map/scale</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Byte Servlet -->
+    <servlet>
+        <servlet-name>mapByteServlet</servlet-name>
+        <servlet-class>classes.MapByteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mapByteServlet</servlet-name>
+        <url-pattern>/map/byte</url-pattern>
+    </servlet-mapping>
 </web-app>

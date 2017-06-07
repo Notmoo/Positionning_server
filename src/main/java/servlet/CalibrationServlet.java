@@ -19,10 +19,9 @@ public class CalibrationServlet extends HttpServlet{
         try {
             int locId = Integer.parseInt(servletRequest.getParameter("LOCATION_ID"));
             String apMacAddr = servletRequest.getParameter("AP_MAC_ADDRESS");
-            double avg = Double.parseDouble(servletRequest.getParameter("AVG"));
-            double stdDev = Double.parseDouble(servletRequest.getParameter("STD_DEV"));
+            double val = Double.parseDouble(servletRequest.getParameter("VAL"));
 
-            new CalibrationService().addCalibrationData(locId, apMacAddr, avg, stdDev);
+            new CalibrationService().addCalibrationData(locId, apMacAddr, val);
         }catch(Exception e){
             e.printStackTrace();
             try{

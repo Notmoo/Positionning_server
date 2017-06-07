@@ -17,10 +17,10 @@ public class CalibrationService {
     public CalibrationService(){this.dao = new HibernateDao();}
     public CalibrationService(HibernateDao dao){this.dao = dao;}
 
-    public boolean addCalibrationData(int locationId, String apMacAddress, double avg, double stdDev){
+    public boolean addCalibrationData(int locationId, String apMacAddress, double val){
         Location loc = dao.getLocation(locationId);
         AccessPoint ap = dao.getAccessPoints(apMacAddress).get(0);
-        return dao.saveRssiRecord(new RssiRecord(loc, ap, avg, stdDev));
+        return dao.saveRssiRecord(new RssiRecord(loc, ap, val));
     }
     public boolean registerCalibrationData(RssiRecord... records){
         return dao.saveRssiRecord(records);

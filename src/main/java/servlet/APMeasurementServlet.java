@@ -18,12 +18,11 @@ public class APMeasurementServlet extends HttpServlet {
         
         String apMacAddr = servletRequest.getParameter("AP_MAC");
         String clientMacAddr = servletRequest.getParameter("CLIENT_MAC");
-        Double avg = Double.parseDouble(servletRequest.getParameter("AVG"));
-        Double stdDev = Double.parseDouble(servletRequest.getParameter("STD_DEV"));
+        Double val = Double.parseDouble(servletRequest.getParameter("VAL"));
         
-        if(apMacAddr!=null && !apMacAddr.isEmpty() && clientMacAddr!=null && !clientMacAddr.isEmpty() && avg!=null && stdDev!=null) {
+        if(apMacAddr!=null && !apMacAddr.isEmpty() && clientMacAddr!=null && !clientMacAddr.isEmpty() && val!=null) {
             MeasurementService mServ = new MeasurementService();
-            mServ.registerMeasurement(apMacAddr, clientMacAddr, avg, stdDev);
+            mServ.registerMeasurement(apMacAddr, clientMacAddr, val);
             servletResponse.setStatus(200);
         }else{
             servletResponse.setStatus(400);

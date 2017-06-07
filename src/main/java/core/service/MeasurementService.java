@@ -17,11 +17,11 @@ public class MeasurementService {
         dao = new HibernateDao();
     }
     
-    public void registerMeasurement(String apMacAddr, String clientMacAddr, double avg, double stdDev){
+    public void registerMeasurement(String apMacAddr, String clientMacAddr, double val){
         List<AccessPoint> aps = dao.getAccessPoints(apMacAddr);
         
         if(aps.size()>0){
-            dao.saveTempRssi(new TempRssi(aps.get(0), clientMacAddr, avg, stdDev));
+            dao.saveTempRssi(new TempRssi(aps.get(0), clientMacAddr, val));
         }
     }
 }

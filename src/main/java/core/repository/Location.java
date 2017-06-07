@@ -19,7 +19,13 @@ public class Location implements Serializable {
     
     public Location () {
     }
-    
+
+    public Location(double posx, double posy, Map map) {
+        this.x = posx;
+        this.y = posy;
+        this.map = map;
+    }
+
     public Integer getId(){return id;}
     
     public void setId(Integer id){this.id = id;}

@@ -29,4 +29,7 @@ public class CalibrationService {
         return dao.saveAccessPoint(ap);
     }
     public List<AccessPoint> getAllAccessPoints(){return dao.getAccessPoint();}
+    public int registerLocation(double posx, double posy, int mapId){
+        return dao.saveLocation(new Location(posx, posy, dao.getMap(mapId)));
+    }
 }

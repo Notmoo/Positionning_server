@@ -24,10 +24,10 @@ public class PositioningServlet extends HttpServlet{
             throws ServletException, IOException {
     
         
-        String clientIpAddr = servletRequest.getParameter("CLIENT_IP");
+        String clientMacAddr = servletRequest.getParameter("CLIENT_MAC_ADDR");
         PositioningService posServ = new PositioningService();
         
-        multicastPositioningRequest(posServ.getMacAddr(clientIpAddr));
+        multicastPositioningRequest(clientMacAddr);
         
         
         Location loc = null;
@@ -38,7 +38,7 @@ public class PositioningServlet extends HttpServlet{
                e.printStackTrace();
             }
     
-            loc = posServ.getLocation(clientIpAddr);
+            loc = posServ.getLocation(clientMacAddr);
         }while(loc==null);
         
         servletResponse.setContentType("text/plain");

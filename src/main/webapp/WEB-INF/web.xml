@@ -13,7 +13,18 @@
 
     <servlet-mapping>
         <servlet-name>calibrationServlet</servlet-name>
-        <url-pattern>/calibration</url-pattern>
+        <url-pattern>/calibration/request</url-pattern>
+    </servlet-mapping>
+
+    <!-- Calibration servlet -->
+    <servlet>
+        <servlet-name>apCalibrationServlet</servlet-name>
+        <servlet-class>classes.APCalibrationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>apCalibrationServlet</servlet-name>
+        <url-pattern>/ap/calibration</url-pattern>
     </servlet-mapping>
 
     <!-- Positioning request servlet -->

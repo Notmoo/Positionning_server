@@ -163,6 +163,20 @@ public class HibernateDao {
         return reply;
     }
 
+
+    public int saveLocation(Location location) {
+        TransactionCallBack callBack = execTransactionProcess((session)->{
+            TransactionCallBack<Integer> reply = new TransactionCallBack<Integer>();
+            Integer id = (Integer) session.save(location);
+            if(id!=null)
+                reply.results.add(id);
+            return reply;
+        });
+
+        if(callBack!=null && callBack.results.size()>0)
+            return (Integer)callBack.results.get(0);
+        return -1;
+    }
     public Location getLocation(int Location) {
         TransactionCallBack callBack = execTransactionProcess((session)->{
             TransactionCallBack reply = new TransactionCallBack<Location>();
@@ -177,6 +191,7 @@ public class HibernateDao {
         });
         return (callBack.getResults().isEmpty()?null:(Location)callBack.getResults().get(0));
     }
+
 
     private interface ITransactionProcess{
         TransactionCallBack exec(Session tr);

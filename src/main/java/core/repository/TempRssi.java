@@ -16,18 +16,24 @@ public class TempRssi {
     private AccessPoint ap;
     
     private String client_mac_addr;
-    private Double avg, stdDev;
+    private Double val;
     
     public TempRssi () {}
     
-    public TempRssi (final AccessPoint accessPoint, final String clientMacAddr, final double avg,
-                     final double stdDev) {
+    public TempRssi (final AccessPoint accessPoint, final String clientMacAddr, final double val) {
         ap = accessPoint;
         client_mac_addr = clientMacAddr;
-        this.avg = avg;
-        this.stdDev = stdDev;
+        this.val = val;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public AccessPoint getAp () {
         return ap;
     }
@@ -43,20 +49,12 @@ public class TempRssi {
     public void setClient_mac_addr (final String client_mac_addr) {
         this.client_mac_addr = client_mac_addr;
     }
-    
-    public Double getAvg () {
-        return avg;
+
+    public Double getVal() {
+        return val;
     }
-    
-    public void setAvg (final Double avg) {
-        this.avg = avg;
-    }
-    
-    public Double getStdDev () {
-        return stdDev;
-    }
-    
-    public void setStdDev (final Double stdDev) {
-        this.stdDev = stdDev;
+
+    public void setVal(Double val) {
+        this.val = val;
     }
 }

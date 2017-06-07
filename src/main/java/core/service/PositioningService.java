@@ -30,18 +30,19 @@ public class PositioningService {
         List<TempRssi> clientRssi = hibDao.getTempRssi(debDao.getMacAddr(ipAddr));
         
         if(clientRssi.size()>=3) {
+
             Location bestLoc = null;
-            double bestLocProbability = -1;
+            double bestLocDistance = -1;
+
             for (Location loc : hibDao.getLocations()) {
                 //Liste des RSSISample pour une position donnée, chaque RSSISample étant
                 //assossié à un AccessPoint
                 List<RssiRecord> rssis = hibDao.getRssiRecord(loc.getId());
-        
-        
-                double currentLocProbability = probability(clientRssi, rssis, DEFAULT_POSITIONING_PRECISION);
-                if (bestLocProbability == -1 || currentLocProbability > bestLocProbability) {
+
+                double currentLocDistance = rssiDistance(clientRssi, rssis);
+                if (bestLocDistance == -1 || currentLocDistance < bestLocDistance) {
                     bestLoc = loc;
-                    bestLocProbability = currentLocProbability;
+                    bestLocDistance = currentLocDistance;
                 }
             }
             return bestLoc;
@@ -49,51 +50,50 @@ public class PositioningService {
         return null;
     }
     
-    private double probability(List<TempRssi> temps, List<RssiRecord> rssis, double precision){
+    private double rssiDistance(List<TempRssi> temps, List<RssiRecord> rssis){
         try {
-            double probability = 1;
+            double distance = 0;
             for (TempRssi temp : temps) {
                 RssiRecord rssi = find(temp.getAp().getMac_addr(), rssis);
-                probability*=gauss_probability(temp.getAvg(), temp.getStdDev(), rssi.getAvg(), rssi.getStdDev(), precision);
+                if(rssi!=null)
+                    distance+=(temp.getVal()- rssi.getVal())*(temp.getVal()- rssi.getVal());
+                else
+                    distance+=(temp.getVal()+95)*(temp.getVal()+95);
             }
-            return probability;
+
+            for(RssiRecord rssi : rssis){
+                if(containsMacAddr(rssi.getAp().getMac_addr(), temps))
+                    distance+=(rssi.getVal()+95)*(rssi.getVal()+95);
+            }
+
+
+            return Math.sqrt(distance);
         }catch(IllegalArgumentException e){
             e.printStackTrace();
             return -1;
         }
     }
-    private double gauss_probability(double avg1, double std1, double avg2, double std2, double precision){
-        final double
-                valDebut = Math.min(avg1-3*std1, avg2-3*std2),
-                valFin = Math.max(avg1+3*std1, avg2+3*std2);
-        double
-                rectDebut = valDebut,
-                rectFin = valDebut+precision,
-                probabilite = 0;
-        
-        do{
-            probabilite+=Math.min( gauss(avg1, std1, (rectDebut+rectFin)/2), gauss(avg2, std2, (rectDebut+rectFin)/2));
-            rectDebut = rectFin;
-            rectFin+=precision;
-        }while(rectFin<valFin);
-        
-        return probabilite;
-    }
-    private double gauss (final double avg, final double std, final double x) {
-        return (1/(std*Math.sqrt(2*Math.PI)))*Math.exp(-(Math.pow(x-avg, 2)/(2*Math.pow(std, 2))));
-    }
+
     private RssiRecord find(String macAddr, List<RssiRecord> rrs){
         final List<RssiRecord> results = new ArrayList<>();
         rrs.stream().filter(rr->rr.getAp().getMac_addr().equals(macAddr)).forEach(rr->results.add(rr));
         
         switch(results.size()){
             case 0:
-                throw new IllegalArgumentException("No matching RssiRecord for mac address <"+macAddr+">");
+                return null;
             case 1:
                 return results.get(0);
             default :
                 throw new IllegalArgumentException("Several("+results.size()+") matching RssiRecord for mac address <"+macAddr+">");
         }
+    }
+
+    private boolean containsMacAddr(String macAddr, List<TempRssi> temps){
+        for(TempRssi temp : temps){
+            if(temp.getAp().getMac_addr().equals(macAddr))
+                return true;
+        }
+        return false;
     }
     
     public String getMacAddr (final String clientIpAddr) {

@@ -62,7 +62,7 @@ public class PositioningServlet extends HttpServlet{
             
             byte[] buf = new byte[256];
         
-            String dString = "LOCATE=" + clientMacAddress + ";SERV=" + Inet4Address.getLocalHost().getHostAddress();
+            String dString = "LOCATE=" + clientMacAddress + ";SERV=" + Inet4Address.getLocalHost().getHostAddress()+";";
             buf = dString.getBytes();
         
             // send it

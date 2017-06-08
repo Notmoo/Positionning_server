@@ -45,6 +45,7 @@ public class CalibrationServlet extends HttpServlet{
                 ex.printStackTrace();
             }
         }
+        servletResponse.setStatus(200);
     }
     
     @Override

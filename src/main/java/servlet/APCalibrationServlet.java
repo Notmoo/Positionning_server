@@ -34,6 +34,7 @@ public class APCalibrationServlet extends HttpServlet {
             double val = Double.parseDouble(servletRequest.getParameter("VAL"));
 
             new CalibrationService().addCalibrationData(locId, apMacAddr, val);
+            servletResponse.setStatus(200);
         }catch(Exception e){
             e.printStackTrace();
             try{

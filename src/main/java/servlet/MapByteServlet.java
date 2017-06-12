@@ -19,12 +19,20 @@ public class MapByteServlet extends HttpServlet {
         
         MapService mapService = new MapService();
         int mapId = Integer.parseInt(servletRequest.getParameter("MAP_ID"));
-        Map map = mapService.getMap(mapId);
+        Byte[] mapBytes = mapService.getMapContent(mapId);
         
         servletResponse.setContentType("image/png");
-        servletResponse.getWriter().print(map.getContent());
+        servletResponse.getWriter().print(byteToString(mapBytes));
     }
-    
+
+    private String byteToString(Byte[] bytes) {
+        StringBuffer sb = new StringBuffer();
+        for(Byte currByte : bytes){
+            sb.append(currByte.toString());
+        }
+        return sb.toString();
+    }
+
     @Override
     public void doGet(final HttpServletRequest servletRequest, final HttpServletResponse servletResponse)
             throws ServletException, IOException {

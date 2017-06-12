@@ -65,11 +65,11 @@ public class CalibrationServlet extends HttpServlet{
 
             byte[] buf = new byte[256];
 
-            String dString = "CALIB=" + clientMacAddress + ";SERV=" + Inet4Address.getLocalHost().getHostAddress()+";LOC_ID="+locationId+";";
+            String dString = "{\"CALIB\": \"" + clientMacAddress + "\", \"SERV\": \"" + Inet4Address.getLocalHost().getHostAddress()+"\", \"LOC_ID\": \""+locationId+"\"}";
             buf = dString.getBytes();
 
             // send it
-            InetAddress group = InetAddress.getByName("230.0.0.1");
+            InetAddress group = InetAddress.getByName("10.255.255.255");
             DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 4446);
             socket.send(packet);
         } catch (IOException e) {

@@ -41,8 +41,8 @@ public class PositioningServlet extends HttpServlet{
             loc = posServ.getLocation(clientMacAddr);
         }while(loc==null);
         
-        servletResponse.setContentType("text/plain");
-        servletResponse.getWriter().print(String.format("{x:%f;y:%f;map:%d}", loc.getX(), loc.getY(), loc.getMap().getId()));
+        servletResponse.setContentType("application/json");
+        servletResponse.getWriter().print(String.format("{\"x\": \"%f\", \"y\": \"%f\", \"map\": \"%d\"}", loc.getX(), loc.getY(), loc.getMap().getId()));
     }
     
     @Override
@@ -62,11 +62,11 @@ public class PositioningServlet extends HttpServlet{
             
             byte[] buf = new byte[256];
         
-            String dString = "LOCATE=" + clientMacAddress + ";SERV=" + Inet4Address.getLocalHost().getHostAddress()+";";
+            String dString = "{\"LOCATE\": \"" + clientMacAddress + "\", \"SERV\": \"" + Inet4Address.getLocalHost().getHostAddress()+"\"}";
             buf = dString.getBytes();
         
             // send it
-            InetAddress group = InetAddress.getByName("230.0.0.1");
+            InetAddress group = InetAddress.getByName("10.255.255.255");
             DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 4446);
             socket.send(packet);
         } catch (IOException e) {

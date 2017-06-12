@@ -21,8 +21,8 @@ public class MapScaleServlet extends HttpServlet {
             int mapId = Integer.parseInt(servletRequest.getParameter("MAP_ID"));
             Map map = mapService.getMap(mapId);
             
-            servletResponse.setContentType("text/plain");
-            servletResponse.getWriter().print(String.format("{x1:%f;y1:%f;x2:%f;y2:%f}", map.getX_topLeft()
+            servletResponse.setContentType("application/json");
+            servletResponse.getWriter().print(String.format("{\"x1\":\"%f\",\"y1\":\"%f\",\"x2\":\"%f\",\"y2\":\"%f\"}", map.getX_topLeft()
                     , map.getY_topLeft(), map.getX_bottomRight(), map.getY_bottomRight()));
         }
         

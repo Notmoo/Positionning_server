@@ -95,8 +95,4 @@ public class PositioningService {
         }
         return false;
     }
-    
-    public String getMacAddr (final String clientIpAddr) {
-        return debDao.getMacAddr(clientIpAddr);
-    }
 }

@@ -14,6 +14,8 @@ import java.net.InetAddress;
 import java.util.Random;
 
 /**
+ * Servlet handling calibration request coming from clients.
+ *
  * Created by Guillaume on 15/05/2017.
  */
 public class CalibrationServlet extends HttpServlet{
@@ -60,10 +62,15 @@ public class CalibrationServlet extends HttpServlet{
         execute(servletRequest, servletResponse);
     }
 
+    /**
+     * Method broadcasting UPD request to AP, request asking fo calibration data.
+     * @param clientMacAddress mac address of client on which ap's measurement will be based
+     * @param locationId id of corresponding location in database
+     */
     private void multicastCalibrationRequest(String clientMacAddress, int locationId){
         try (DatagramSocket socket = new DatagramSocket(4445)){
 
-            byte[] buf = new byte[256];
+            byte[] buf;
 
             String dString = "{\"CALIB\": \"" + clientMacAddress + "\", \"SERV\": \"" + Inet4Address.getLocalHost().getHostAddress()+"\", \"LOC_ID\": \""+locationId+"\"}";
             buf = dString.getBytes();

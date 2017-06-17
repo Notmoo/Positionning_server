@@ -10,7 +10,7 @@
         <property name="connection.username">lo53_user</property>
         <property name="connection.password">lo53</property>
         <property name="connection.pool_size">1</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="core.repository.AccessPoint"/>
         <mapping class="core.repository.Location"/>

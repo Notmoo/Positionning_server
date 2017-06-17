@@ -8,6 +8,9 @@ import core.repository.RssiRecord;
 import java.util.List;
 
 /**
+ * CalibrationService is a service class providing a way to register new calibration datas and new locations,
+ * that can be used afterwards to compute locations.
+ *
  * Created by Guillaume on 09/05/2017.
  */
 public class CalibrationService {

@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "MAP")
-public class Map implements Serializable{
+public class Map implements IJavaBean{
     @Id @GeneratedValue
     private int id;
     private Double x_topLeft, y_topLeft;

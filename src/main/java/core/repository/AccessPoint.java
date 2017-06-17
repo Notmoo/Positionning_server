@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name ="ACCESS_POINT")
-public class AccessPoint implements Serializable{
+public class AccessPoint implements IJavaBean{
     @Id @GeneratedValue
     private int id;
     

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Servlet designed to access to map scale, which can be use to convert real-life coordinates to on-screen coordinates. This kind of request is usually sent by clients.
+ *
  * Created by Guillaume on 29/05/2017.
  */
 public class MapScaleServlet extends HttpServlet {

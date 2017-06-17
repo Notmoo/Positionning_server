@@ -3,6 +3,9 @@ package core.utils;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+/**
+ * Singleton class granting access to Hibernate's session, built from annotations and hibernate config file
+ */
 public class HibernateUtil {
     
     private static final SessionFactory sessionFactory = buildSessionFactory();

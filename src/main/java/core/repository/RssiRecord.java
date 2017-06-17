@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table (name = "RSSI_RECORD")
-public class RssiRecord implements Serializable {
+public class RssiRecord implements IJavaBean {
     @Id @GeneratedValue
     private int id;
 

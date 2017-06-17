@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "TEMP_RSSI")
-public class TempRssi {
+public class TempRssi implements IJavaBean{
     @Id @GeneratedValue
     private int id;
     

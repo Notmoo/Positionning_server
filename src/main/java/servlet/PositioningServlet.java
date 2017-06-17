@@ -16,6 +16,8 @@ import java.net.InetAddress;
 import static java.lang.Thread.sleep;
 
 /**
+ * Servlet handling positioning request coming from clients.
+ *
  * Created by Guillaume on 15/05/2017.
  */
 public class PositioningServlet extends HttpServlet{
@@ -30,10 +32,10 @@ public class PositioningServlet extends HttpServlet{
         multicastPositioningRequest(clientMacAddr);
         
         
-        Location loc = null;
+        Location loc;
         do{
             try{
-                sleep(500l);
+                sleep(500L);
             } catch (InterruptedException e) {
                e.printStackTrace();
             }
@@ -56,11 +58,16 @@ public class PositioningServlet extends HttpServlet{
             throws ServletException, IOException {
         service(servletRequest, servletResponse);
     }
-    
+
+    /**
+     * Method broadcasting UPD request to AP, request asking for positioning data.
+     *
+     * @param clientMacAddress mac address of client on which ap's measurement will be based
+     */
     private void multicastPositioningRequest(String clientMacAddress){
         try (DatagramSocket socket = new DatagramSocket(4445)){
             
-            byte[] buf = new byte[256];
+            byte[] buf;
         
             String dString = "{\"LOCATE\": \"" + clientMacAddress + "\", \"SERV\": \"" + Inet4Address.getLocalHost().getHostAddress()+"\"}";
             buf = dString.getBytes();

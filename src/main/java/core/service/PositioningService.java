@@ -1,6 +1,5 @@
 package core.service;
 
-import core.dao.DebianDao;
 import core.dao.HibernateDao;
 import core.repository.Location;
 import core.repository.RssiRecord;
@@ -10,24 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * PositioningService is a service class designed to provide methods to compute one's location using measured data.
+ *
+ * To register measured data, please use {@link MeasurementService}. To register calibration data, please use {@link CalibrationService}
  * Created by Guillaume on 09/05/2017.
  */
 public class PositioningService {
     
-    private static final double DEFAULT_POSITIONING_PRECISION = 7.5;
-    
     private HibernateDao hibDao;
-    private DebianDao debDao;
     
     public PositioningService () {
-        this.debDao = new DebianDao();
         this.hibDao = new HibernateDao();
     }
     
-    public Location getLocation (String ipAddr) {
+    public Location getLocation (String macAddr) {
     
         //Liste des RSSISample associé à un ap, mesuré pour un client
-        List<TempRssi> clientRssi = hibDao.getTempRssi(debDao.getMacAddr(ipAddr));
+        List<TempRssi> clientRssi = hibDao.getTempRssi(macAddr);
         
         if(clientRssi.size()>=3) {
 

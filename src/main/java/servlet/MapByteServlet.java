@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Servlet designed to access to map image bytes. This kind of request is usually sent by clients.
+ *
  * Created by Guillaume on 29/05/2017.
  */
 public class MapByteServlet extends HttpServlet {

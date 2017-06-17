@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Servlet designed to receive registration requests about positioning data.
+ *
  * Created by Guillaume on 29/05/2017.
  */
 public class APMeasurementServlet extends HttpServlet {

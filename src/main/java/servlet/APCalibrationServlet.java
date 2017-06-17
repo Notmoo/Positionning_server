@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Servlet designed to receive registration requests about calibration data.
+ *
  * Created by Guillaume on 07/06/2017.
  */
 public class APCalibrationServlet extends HttpServlet {

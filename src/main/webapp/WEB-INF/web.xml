@@ -8,7 +8,7 @@
     <!-- Calibration servlet -->
     <servlet>
         <servlet-name>calibrationServlet</servlet-name>
-        <servlet-class>classes.CalibrationServlet</servlet-class>
+        <servlet-class>servlet.CalibrationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -19,7 +19,7 @@
     <!-- Calibration servlet -->
     <servlet>
         <servlet-name>apCalibrationServlet</servlet-name>
-        <servlet-class>classes.APCalibrationServlet</servlet-class>
+        <servlet-class>servlet.APCalibrationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -30,7 +30,7 @@
     <!-- Positioning request servlet -->
     <servlet>
         <servlet-name>positioningServlet</servlet-name>
-        <servlet-class>classes.PositioningServlet</servlet-class>
+        <servlet-class>servlet.PositioningServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -41,7 +41,7 @@
     <!-- AP measurement servlet -->
     <servlet>
         <servlet-name>apMeasurementServlet</servlet-name>
-        <servlet-class>classes.APMeasurementServlet</servlet-class>
+        <servlet-class>servlet.APMeasurementServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -52,7 +52,7 @@
     <!-- Map Scale Servlet -->
     <servlet>
         <servlet-name>mapScaleServlet</servlet-name>
-        <servlet-class>classes.MapScaleServlet</servlet-class>
+        <servlet-class>servlet.MapScaleServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -63,7 +63,7 @@
     <!-- Map Byte Servlet -->
     <servlet>
         <servlet-name>mapByteServlet</servlet-name>
-        <servlet-class>classes.MapByteServlet</servlet-class>
+        <servlet-class>servlet.MapByteServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
